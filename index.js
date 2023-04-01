@@ -3,10 +3,10 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(express.json());
-const api_key = "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";
+require("dotenv").config();
 
 const configuration = new Configuration({
-  apiKey: api_key,
+  apiKey: process.env.API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -40,5 +40,5 @@ app.post("/chat", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("port listen....:", port);
+  console.log("port listen:", port);
 });
