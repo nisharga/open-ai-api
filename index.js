@@ -3,13 +3,16 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(express.json());
-
-const api_key = "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";
+const api_key = "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";
 
 const configuration = new Configuration({
   apiKey: api_key,
 });
 const openai = new OpenAIApi(configuration);
+
+app.get("/", (req, res) => {
+  res.send("Express in working fine");
+});
 
 app.post("/chat", (req, res) => {
   const question = req.body.question;
@@ -36,10 +39,6 @@ app.post("/chat", (req, res) => {
     });
 });
 
-// just server testing
 app.listen(port, () => {
   console.log("port listen:", port);
-});
-app.get("/", (req, res) => {
-  res.send("Express with OpenAi API is working fine");
 });
